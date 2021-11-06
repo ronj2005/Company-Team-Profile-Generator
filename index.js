@@ -9,12 +9,15 @@ const Contractor = require("./lib/contractor");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-
+// Accesses the data to create the HTML file
 const render = require("./lib/renderHTML");
 
 const employees = [];
+  // newEmployee function
 const newEmployee = () => {
+
   inquirer
+  // Questions prompt
     .prompt([
       {
         type: "list",
@@ -32,7 +35,7 @@ const newEmployee = () => {
         type: "input",
         name: "id",
         message: "What is the ID of the employee?",
-        // The users guess must be a number or letter
+        
         validate: validation,
       },
       {
@@ -42,6 +45,7 @@ const newEmployee = () => {
         validate: validateEmail,
       },
     ])
+    // using switch case for seperate prompt instances
     .then(function (data) {
       switch (data.role) {
         case "Manager":
@@ -104,31 +108,31 @@ const newEmployee = () => {
               addEmployee();
             });
           break;
-          case "Contractor":
-            inquirer
-              .prompt({
-                type: "input",
-                name: "github",
-                message: "What is the contractor's Github Username?",
-                validate: validation,
-              })
-              .then(function (conData) {
-                const newContractor = new Contractor(
-                  data.name,
-                  data.id,
-                  data.email,
-                  conData.github
-                );
-                newContractor.role = "Contractor";
-                employees.push(newContractor);
-                addEmployee();
-              });
-            break;
+        case "Contractor":
+          inquirer
+            .prompt({
+              type: "input",
+              name: "github",
+              message: "What is the contractor's Github Username?",
+              validate: validation,
+            })
+            .then(function (conData) {
+              const newContractor = new Contractor(
+                data.name,
+                data.id,
+                data.email,
+                conData.github
+              );
+              newContractor.role = "Contractor";
+              employees.push(newContractor);
+              addEmployee();
+            });
+          break;
           
       }
     });
 };
-// The function to make sure the user email is in right format
+
 function validateEmail(str) {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(str)) {
     return true;
@@ -137,7 +141,7 @@ function validateEmail(str) {
     return false;
   }
 }
-// The function to make sure every question is answered properly
+
 function validation(str) {
   if (str != "") {
     return true;

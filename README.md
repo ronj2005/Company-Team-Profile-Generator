@@ -20,6 +20,7 @@ Usage:
     To begin, you must first type node index.js in Terminal to access the prompt to follow along with the generated questions display. Each question is displayed throught the terminal by the use of npm inquirer. You may enter any emplyee class as you choose for example, you may Intern first. If you choose to use manager forst, simply enter your Manager's emplee data. Then, choose Engineers, Contractor, or Interns to add to your team. Enter each of their details and decide if you want to add another role or if you are ready to build your team. Each employee has their name, role, ID, and email displayed on their card. In addition, the Manager has the office number, the Engineer has the github profile, and the Intern has the school name. When you are done answering all the questions, your input will be conveniently displayed on a brand new html page and saved in an output folder inside your local repository. Look at the screenshots to find out more. Good luck!
 
 
+Generated HTML:
 
 ![alt text](assets/images/Screen_Shot_2021-11-06_at_2.08.45_PM.png)
 
@@ -27,7 +28,9 @@ Usage:
 
  
 
-![alt text](assets/images/Screen_Shot_2021-11-06_at_3.22.56_PM)
+Prompt Question in Terminal:
+
+![alt text](assets/images/Screen_Shot_2021-11-06_at_3.22.56_PM.png)
 
 video link: https://watch.screencastify.com/v/teecNT1hB11ygxgTC5Bj
 

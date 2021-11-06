@@ -5,6 +5,7 @@ const path = require("path");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
+const Contractor = require("./lib/contractor");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -19,7 +20,7 @@ const newEmployee = () => {
         type: "list",
         name: "role",
         message: "What role does the employee play in the organization?",
-        choices: ["Manager", "Engineer", "Intern"],
+        choices: ["Manager", "Engineer", "Intern", "Contractor"],
       },
       {
         type: "input",
@@ -103,6 +104,27 @@ const newEmployee = () => {
               addEmployee();
             });
           break;
+          case "Contractor":
+            inquirer
+              .prompt({
+                type: "input",
+                name: "github",
+                message: "What is the contractor's Github Username?",
+                validate: validation,
+              })
+              .then(function (conData) {
+                const newContractor = new Contractor(
+                  data.name,
+                  data.id,
+                  data.email,
+                  conData.github
+                );
+                newContractor.role = "Contractor";
+                employees.push(newContractor);
+                addEmployee();
+              });
+            break;
+          
       }
     });
 };
